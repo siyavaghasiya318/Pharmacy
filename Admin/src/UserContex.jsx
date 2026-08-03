@@ -7,6 +7,11 @@ export const admincontext = createContext()
 
 export const AdminProvider = ({ children }) => {
 
+    const Api = "https://pharmacy-d78v.onrender.com"
+
+    // const Api = "http://localhost:5000"
+
+
     const [AdminForm, SetAdminForm] = useState({
         firstname: "",
         lastname: "",
@@ -59,15 +64,15 @@ export const AdminProvider = ({ children }) => {
         try {
             let res;
             // if(SetisLogin("register")){
-            //     res = await  axios.post("http://localhost:5000/api/admin/adminregister", AdminForm, {withCredentials:true});
+            //     res = await  axios.post(`${Api}/api/admin/adminregister`, AdminForm, {withCredentials:true});
 
             // }
             // else{
-            //     res = await axios.post("http://localhost:5000/api/admin/adminlogin", AdminForm, {withCredentials:true});
+            //     res = await axios.post(`${Api}/api/admin/adminlogin`, AdminForm, {withCredentials:true});
 
             // }
 
-            res = await axios.post(`http://localhost:5000/api/admin/${isLogin}`, AdminForm, { withCredentials: true });
+            res = await axios.post(`${Api}/api/admin/${isLogin}`, AdminForm, { withCredentials: true });
 
 
             const data = res.data
@@ -132,12 +137,12 @@ export const AdminProvider = ({ children }) => {
 
 
             if (userid) {
-                const { data } = await axios.put(`http://localhost:5000/api/product/updateproduct/${userid}`, Product, { withCredentials: true })
+                const { data } = await axios.put(`${Api}/api/product/updateproduct/${userid}`, Product, { withCredentials: true })
                 toast.success(data.message)
                 console.log("update data", data.updateproduct);
             }
             else {
-                const { data } = await axios.post("http://localhost:5000/api/product/addproduct", Product, { withCredentials: true })
+                const { data } = await axios.post(`${Api}/api/product/addproduct`, Product, { withCredentials: true })
                 toast.success(data.message)
 
             }
@@ -173,7 +178,7 @@ export const AdminProvider = ({ children }) => {
 
     const FetchProductData = async () => {
         try {
-            const { data } = await axios.get("http://localhost:5000/api/product/getproduct")
+            const { data } = await axios.get(`${Api}/api/product/getproduct`)
             SetGetProduct(data.Finddata)
         } catch (error) {
             console.log("fetchproductdata error", error);
@@ -207,7 +212,7 @@ export const AdminProvider = ({ children }) => {
 
     const GetProfile = async () => {
         try {
-            const { data } = await axios("http://localhost:5000/api/admin/adminprofile", { withCredentials: true })
+            const { data } = await axios(`${Api}/api/admin/adminprofile`, { withCredentials: true })
             if (data.success) {
                 SetisAuth(true)
                 SetShowProfile(data.admin)
@@ -223,7 +228,7 @@ export const AdminProvider = ({ children }) => {
 
     const GetUsers = async () => {
         try {
-            const { data } = await axios.get("http://localhost:5000/api/user/getallusers", { withCredentials: true })
+            const { data } = await axios.get(`${Api}/api/user/getallusers`, { withCredentials: true })
             SetgetUsers(data.users)
 
         } catch (error) {
@@ -233,7 +238,7 @@ export const AdminProvider = ({ children }) => {
 
     const ProductDelete = async (id) => {
         try {
-            const { data } = await axios.delete(`http://localhost:5000/api/product/Deleteproduct/${id}`)
+            const { data } = await axios.delete(`${Api}/api/product/Deleteproduct/${id}`)
             FetchProductData()
 
             toast.success(data.message)
@@ -244,7 +249,7 @@ export const AdminProvider = ({ children }) => {
     }
     const AdminLogout = async () => {
         try {
-            const { data } = await axios.post("http://localhost:5000/api/admin/adminlogout", {}, { withCredentials: true })
+            const { data } = await axios.post(`${Api}/api/admin/adminlogout`, {}, { withCredentials: true })
             if (data.success) {
                 SetisAuth(false)
                 navigate("/login")
@@ -258,7 +263,7 @@ export const AdminProvider = ({ children }) => {
 
     const GetOrder = async () => {
         try {
-            const { data } = await axios.get("http://localhost:5000/api/order/getorder")
+            const { data } = await axios.get(`${Api}/api/order/getorder`)
             console.log(data.orders);
 
             SetFetchOrder(data.orders)
@@ -269,7 +274,7 @@ export const AdminProvider = ({ children }) => {
     }
 
     const OrderUpdate = async (orderId, orderStatus) => {
-        const { data } = await axios.put("http://localhost:5000/api/order/updateorder", { orderId, orderStatus }, { withCredentials: true })
+        const { data } = await axios.put(`${Api}/api/order/updateorder`, { orderId, orderStatus }, { withCredentials: true })
 
         if (data.success) {
             GetOrder()

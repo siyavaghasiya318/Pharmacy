@@ -7,6 +7,10 @@ export const Usercontext = createContext();
 
 export const UserProvider = ({children}) => {
 
+    const Api = "https://pharmacy-d78v.onrender.com"
+
+    // const Api = "http://localhost:5000"
+
     const[UserForm,SetUserForm] = useState({
         firstname: "",
         lastname: "",
@@ -62,7 +66,7 @@ export const UserProvider = ({children}) => {
             console.log(FetchCart);
             
 
-            const{data} = await axios.post("http://localhost:5000/api/order/payment", Orderdata, {withCredentials:true})
+            const{data} = await axios.post(`${Api}/api/order/payment`, Orderdata, {withCredentials:true})
             console.log(data);
             toast.success(data.message)
             if(data.success){
@@ -80,7 +84,7 @@ export const UserProvider = ({children}) => {
 
     const GetOrderHistory = async() => {
         try {
-            const{data} = await axios.get("http://localhost:5000/api/order/getorderhistory", {withCredentials:true})
+            const{data} = await axios.get(`${Api}/api/order/getorderhistory`, {withCredentials:true})
             console.log("GetOrderHistory", data.UserOrder);
             SetOrderHistory(data.UserOrder)
         } catch (error) {
@@ -137,7 +141,7 @@ export const UserProvider = ({children}) => {
 
     const GetProfile = async() => {
         try {
-            const{data} = await axios.get("http://localhost:5000/api/user/getprofile", {withCredentials:true})
+            const{data} = await axios.get(`${Api}/api/user/getprofile`, {withCredentials:true})
             
             
             if(data.success){
@@ -153,7 +157,7 @@ export const UserProvider = ({children}) => {
 
     const Userlogout = async() => {
         try {
-            const{data} = await axios.post("http://localhost:5000/api/user/logout",{}, {withCredentials:true})
+            const{data} = await axios.post(`${Api}/api/user/logout`,{}, {withCredentials:true})
             console.log(data);
             Setislogin("login")      
             SetShowProfile(false)
@@ -175,7 +179,7 @@ export const UserProvider = ({children}) => {
     
     const FetchProduct = async() => {
         try {
-            const{data} = await axios.get("http://localhost:5000/api/product/getproduct", {withCredentials:true})
+            const{data} = await axios.get(`${Api}/api/product/getproduct`, {withCredentials:true})
             
             SetAddproduct(data.Finddata)
         } catch (error) {
@@ -186,7 +190,7 @@ export const UserProvider = ({children}) => {
     const AddCartProduct = async(productid) => {
         
         try {
-            const{data} = await axios.post("http://localhost:5000/api/cart/addproduct",{productid}, {withCredentials:true} )
+            const{data} = await axios.post(`${Api}/api/cart/addproduct`,{productid}, {withCredentials:true} )
             // console.log(data);
             GetCartProducts()
             if(data.success){
@@ -201,7 +205,7 @@ export const UserProvider = ({children}) => {
 
     const GetCartProducts = async() => {
         try {
-            const{data} = await axios.get("http://localhost:5000/api/cart/getcart", {withCredentials:true})
+            const{data} = await axios.get(`${Api}/api/cart/getcart`, {withCredentials:true})
 
             // console.log("oringinal cart Data",data);
             const cartItem = data.cart[0].item.map((item) => {
@@ -228,7 +232,7 @@ export const UserProvider = ({children}) => {
     const DecreaseQty = async(productid) => {
         try {
             
-            const{data} = await axios.post("http://localhost:5000/api/cart/decreaseitem", {productid}, {withCredentials:true})
+            const{data} = await axios.post(`${Api}/api/cart/decreaseitem`, {productid}, {withCredentials:true})
             
             GetCartProducts()
             
@@ -239,7 +243,7 @@ export const UserProvider = ({children}) => {
 
     const RemoveCartproduct = async(productid) => {
         try {
-            const{data} = await axios.post("http://localhost:5000/api/cart/removecart", {productid}, {withCredentials:true})
+            const{data} = await axios.post(`${Api}/api/cart/removecart`, {productid}, {withCredentials:true})
             
             GetCartProducts()
         } catch (error) {
@@ -277,7 +281,7 @@ export const UserProvider = ({children}) => {
         try {
 
 
-            const{data} = await axios.post("http://localhost:5000/api/address/AddAddress", AddressForm, {withCredentials:true})
+            const{data} = await axios.post(`${Api}/api/address/AddAddress`, AddressForm, {withCredentials:true})
             console.log(data);
             
             SetAddressForm({
@@ -300,7 +304,7 @@ export const UserProvider = ({children}) => {
 
     const GetUserAddress = async() => {
         try {
-            const{data} = await axios.get("http://localhost:5000/api/address/getaddress", {withCredentials:true})
+            const{data} = await axios.get(`${Api}/api/address/getaddress`, {withCredentials:true})
             console.log(data.showadd);
             
             SetShowAddress(data.showadd)

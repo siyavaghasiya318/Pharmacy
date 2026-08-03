@@ -13,7 +13,9 @@ import OrderRoute from "./Routes/OrderRoute.js"
 dotenv.config()
 const corsOrigin = [
     "http://localhost:5174",
-    "http://localhost:5173"
+    "http://localhost:5173",
+    "https://pharmacy-pi-three.vercel.app",
+    "https://pharmacy-ejac.vercel.app"
 ]
 
 const app = express()
