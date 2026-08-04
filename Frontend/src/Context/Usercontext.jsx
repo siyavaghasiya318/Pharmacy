@@ -259,16 +259,7 @@ export const UserProvider = ({children}) => {
              item?.category.toLowerCase() === data.toLowerCase()
         )
 
-    // const Productidpage = async(id) => {
-    //     try {
-    //         const{data} = await axios.post(`http://localhost:5000/api/product/productbyid/${id}`)
-    //         SetShowDetail(data.product)
-    //         console.log("data.product",data.product);
-            
-    //     } catch (error) {
-    //         console.log("productidpage error",error);
-    //     }
-    // }
+    
 
     const AddressChange =(e) => {
         const{name,value} = e.target
