@@ -8,4 +8,5 @@ ProductApi.get("/getproduct", GetProductData)
 ProductApi.put("/updateproduct/:id",uploadProduct.single("image"), UpdateProduct)
 ProductApi.delete("/Deleteproduct/:id", ProductDelete)
 ProductApi.post("/productbyid/:id", Productbyid)
+
 export default ProductApi

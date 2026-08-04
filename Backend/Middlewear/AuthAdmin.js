@@ -12,7 +12,7 @@ export const AuthAdmin = (req,res,next) => {
                 success: false
             })
         }
-        const decode = jwt.verify(token, process.env.JWT_SECRET )
+        const decode = jwt.verify(token, process.env.JWT_SECRET)
         req.admin = decode
 
         next();

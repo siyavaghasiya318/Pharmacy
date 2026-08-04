@@ -7,9 +7,9 @@ export const Usercontext = createContext();
 
 export const UserProvider = ({children}) => {
 
-    const Api = "https://pharmacy-d78v.onrender.com"
+    // const Api = "https://pharmacy-d78v.onrender.com"
 
-    // const Api = "http://localhost:5000"
+    const Api = "http://localhost:5000"
 
     const[UserForm,SetUserForm] = useState({
         firstname: "",
