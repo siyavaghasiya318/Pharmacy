@@ -31,7 +31,7 @@ export const UserRegister = async(req,res) => {
             password: passwordHash
         })
 
-        GenerateUserToken(user._id,res)
+        await GenerateUserToken(user._id,res)
         
         res.status(200).json({
             message: "Successfull Create Your Account",
@@ -76,7 +76,7 @@ export const UserLogin = async(req,res) => {
                 success: false
             })
         }
-        GenerateUserToken(Existemail._id,res)
+       await GenerateUserToken(Existemail._id,res)
 
         res.status(200).json({
             message: "Successfully SignIn",
