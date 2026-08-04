@@ -107,7 +107,7 @@ export const UserProvider = ({children}) => {
         
         try {
             
-            const{data} = await axios.post(`http://localhost:5000/api/user/${islogin}`,UserForm, {withCredentials:true})
+            const{data} = await axios.post(`${Api}/api/user/${islogin}`,UserForm, {withCredentials:true})
             console.log(islogin);
             
             toast.success(data.message)
