@@ -5,7 +5,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { motion } from "framer-motion"
 
 function Products() {
-  const { AddCartProduct, Productidpage, newdata, SetOpenlogin, islogin } = useContext(Usercontext)
+  const { AddCartProduct, newdata, SetOpenlogin, islogin } = useContext(Usercontext)
 
   return (
     <div className='grid gap-5 sm:gap-6 lg:gap-10 grid-cols-2 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-4 pb-10'>
@@ -14,11 +14,13 @@ function Products() {
           <motion.div
             key={item._id}
             initial={{y:100,opacity:0}} whileInView={{y:0,opacity:1}} transition={{duration:0.5}} 
-            onClick={() => Productidpage(item._id)}
+            
             style={{ animationDelay: `${index * 50}ms` }}
             className='animate-pop-in opacity-0 bg-white shadow-sm rounded-lg cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1'
           >
-            <Link to="/detail" >
+            
+    
+            <Link to={`/detail/${item._id}`} >
               <div className="m-auto h-30 bg-gray-50 mt-2 rounded-md overflow-hidden flex items-center justify-center">
                 <img
                   src={item.image}

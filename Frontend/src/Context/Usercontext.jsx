@@ -25,13 +25,12 @@ export const UserProvider = ({children}) => {
     const[getprofile,SetgetProfile] = useState([])
     const[ShowProfile,SetShowProfile] = useState(false) 
     const[FetchCart,Setfetchcart] = useState([])
-    const[ShowDetail,SetShowDetail] = useState([])
     const[ShowAddress,SetShowAddress] = useState([])
     const [selectedAddress, setSelectedAddress] = useState(null)
     const[OrderHistory,SetOrderHistory] = useState([])
     const navigate = useNavigate()
 
-
+    
     const[AddressForm,SetAddressForm] = useState({
         address: "",
         city: "",
@@ -63,7 +62,7 @@ export const UserProvider = ({children}) => {
                 item: formattedItems,
                 shippingAddress: selectedAddress
             }
-            console.log(FetchCart);
+            // console.log("FetchCart", FetchCart);
             
 
             const{data} = await axios.post(`${Api}/api/order/payment`, Orderdata, {withCredentials:true})
@@ -182,6 +181,8 @@ export const UserProvider = ({children}) => {
             const{data} = await axios.get(`${Api}/api/product/getproduct`, {withCredentials:true})
             
             SetAddproduct(data.Finddata)
+            
+            
         } catch (error) {
             console.log("FetchProduct error", error);
         }
@@ -258,15 +259,16 @@ export const UserProvider = ({children}) => {
              item?.category.toLowerCase() === data.toLowerCase()
         )
 
-    const Productidpage = async(id) => {
-        try {
-            const{data} = await axios.post(`http://localhost:5000/api/product/productbyid/${id}`)
-            SetShowDetail(data.product)
+    // const Productidpage = async(id) => {
+    //     try {
+    //         const{data} = await axios.post(`http://localhost:5000/api/product/productbyid/${id}`)
+    //         SetShowDetail(data.product)
+    //         console.log("data.product",data.product);
             
-        } catch (error) {
-            console.log("productidpage error",error);
-        }
-    }
+    //     } catch (error) {
+    //         console.log("productidpage error",error);
+    //     }
+    // }
 
     const AddressChange =(e) => {
         const{name,value} = e.target
@@ -326,7 +328,7 @@ export const UserProvider = ({children}) => {
     }, [])
     
     return(
-        <Usercontext.Provider value={{OrderHistory,handlePaymentSelect,ShowAddress,selectedAddress, setSelectedAddress,SelectPayment,setSelectPayement,PlaceOrder,AddressSubmit,AddressChange,AddressForm,Setdata,ShowDetail,Productidpage,newdata,GetCartProducts,RemoveCartproduct,Addproduct,DecreaseQty,FetchCart,navigate,AddCartProduct,getprofile,Userlogout,HandleChange,FormSubmit,UserForm,islogin,Setislogin,OpenLogin,SetOpenlogin,SetShowProfile,ShowProfile,Productidpage}}>
+        <Usercontext.Provider value={{OrderHistory,handlePaymentSelect,ShowAddress,selectedAddress, setSelectedAddress,SelectPayment,setSelectPayement,PlaceOrder,AddressSubmit,AddressChange,AddressForm,Setdata,newdata,GetCartProducts,RemoveCartproduct,Addproduct,DecreaseQty,FetchCart,navigate,AddCartProduct,getprofile,Userlogout,HandleChange,FormSubmit,UserForm,islogin,Setislogin,OpenLogin,SetOpenlogin,SetShowProfile,ShowProfile,}}>
             {children}
         </Usercontext.Provider>
     )

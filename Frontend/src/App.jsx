@@ -28,7 +28,7 @@ function App() {
             <Route path='/profile' element={<UserProfile/>}/>
             <Route path='/pharmacyhome' element={<PharmacyHome/>}/>
             <Route path='/cart' element={<CartProducts/>}/>
-            <Route path='/detail' element={<ProductDetail/>}/>
+            <Route path='/detail/:id' element={<ProductDetail/>}/>
             <Route path='/address' element={<AddAddress/>}/>
             <Route path='/order' element={<Shipping/>}/>
             <Route path='/checkout' element={<Checkout/>}/>

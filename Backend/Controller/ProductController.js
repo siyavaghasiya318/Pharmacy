@@ -129,30 +129,30 @@ export const ProductDelete =  async(req,res) => {
     }
 }
 
-export const Productbyid = async(req,res) => {
-    try {
-        const productid = req.params.id
-        console.log(productid);
+// export const Productbyid = async(req,res) => {
+//     try {
+//         const productid = req.params.id
+//         console.log(productid);
         
-        const product = await Product.findById({_id:productid})
+//         const product = await Product.findById({_id:productid})
 
-        if(!product){
-            return res.status(404).json({
-                message: "product not found",
-                success: false,
-            })
-        }
+//         if(!product){
+//             return res.status(404).json({
+//                 message: "product not found",
+//                 success: false,
+//             })
+//         }
 
-        res.status(200).json({
-            success: true,
-            product
-        })
-    } catch (error) {
-        console.log("DetailPage error", error);
-        return res.status(500).json({
-            message: "Internal server error",
-            success: false
-        })
-    }
-}
+//         res.status(200).json({
+//             success: true,
+//             product
+//         })
+//     } catch (error) {
+//         console.log("DetailPage error", error);
+//         return res.status(500).json({
+//             message: "Internal server error",
+//             success: false
+//         })
+//     }
+// }
 

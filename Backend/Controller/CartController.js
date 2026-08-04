@@ -86,8 +86,9 @@ export const GetCart= async(req,res) => {
 export const DecreaseItem = async(req,res) => {
     try {
         const{productid} = req.body
+        
         const userid = req.user.userid
-
+        
         const product = await Product.findById(productid)
         if(!productid){
             return res.status(400).json({
@@ -97,7 +98,7 @@ export const DecreaseItem = async(req,res) => {
         }
         
         let cart = await Cart.findOne({user:userid})
-        
+            
         if(!cart){
             return res.status(400).json({
                 message: "Cart Not Found",
