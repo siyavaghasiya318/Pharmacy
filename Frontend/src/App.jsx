@@ -14,6 +14,7 @@ import ProductDetail from './Components/Shop/ProductDetail'
 import AddAddress from './Components/Login_register/AddAddress'
 import Shipping from './Components/Order/Shipping'
 import Checkout from './Components/Order/Checkout'
+import ContactPage from './Pages/ContactPage'
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path='/address' element={<AddAddress/>}/>
             <Route path='/order' element={<Shipping/>}/>
             <Route path='/checkout' element={<Checkout/>}/>
+            <Route path='/contact' element={<ContactPage/>}/>
           </Route>
           
         </Routes>

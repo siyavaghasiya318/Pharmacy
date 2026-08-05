@@ -118,11 +118,11 @@ export const DecreaseItem = async(req,res) => {
 
         await cart.save()
 
-        res.status(200).json({
-            message: "Item Decresed Sucessfully",
-            success:true,
-            cart
-        })
+            res.status(200).json({
+                message: "Quantity decreased",
+                success:true,
+                cart
+            })
 
     } catch (error) {
         console.log("DecreaseQty error", error);

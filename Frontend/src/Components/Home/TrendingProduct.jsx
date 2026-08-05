@@ -6,8 +6,19 @@ import { FiShoppingCart } from 'react-icons/fi'
 import { motion } from "framer-motion"
 
 const TrendingProduct = () => {
-    const { AddCartProduct, Productidpage, newdata, SetOpenlogin, islogin } = useContext(Usercontext)
+    const { AddCartProduct, loading, Productidpage, newdata, SetOpenlogin, islogin } = useContext(Usercontext)
     const trendingProducts = newdata.slice(0, 4);
+
+    if (loading) {
+        return (
+            <div className="flex flex-col items-center justify-center min-h-[60vh]">
+                <div className="w-12 h-12 border-4 border-[#61AE38] border-t-transparent rounded-full animate-spin"></div>
+                <p className="mt-4 text-gray-500 font-medium">
+                    Please wait, products are loading...
+                </p>
+            </div>
+        );
+    }
 
     return (
         <>
@@ -17,8 +28,8 @@ const TrendingProduct = () => {
                 {newdata.slice(0, 4).map((item) => {
                     return (
                         <>
-                            <motion.div initial={{y:100,opacity:0}} viewport={{ once: true }} whileInView={{y:0,opacity:1}} transition={{duration:0.5}}  className="shadow rounded-xl" onClick={() => {Productidpage(item._id), window.scrollTo(0,0)}}>
-                                <Link to="/detail" onClick={() => window.scrollTo(0,0)}>
+                            <motion.div initial={{ y: 100, opacity: 0 }} viewport={{ once: true }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 0.5 }} className="shadow rounded-xl" onClick={() => { Productidpage(item._id), window.scrollTo(0, 0) }}>
+                                <Link to={`/detail/${item._id}`} onClick={() => window.scrollTo(0, 0)}>
                                     <div className="m-auto h-45 bg-gray-50 p-4 rounded-md overflow-hidden flex items-center justify-center">
                                         <img
                                             src={item.image}

@@ -6,14 +6,15 @@ import { motion } from "framer-motion"
 
 
 function Categories() {
+  const{Setdata} = useContext(Usercontext)
 
   const categories = [
     { emoji: '🧴', label: 'Personal Care', bg: 'bg-sky-100', shadow: 'hover:shadow-blue-200', text: 'text-blue-600' },
     { emoji: '👶', label: 'Baby Care', bg: 'bg-pink-100', shadow: 'hover:shadow-pink-200', text: 'text-pink-600' },
     { emoji: '🩺', label: 'Health Checkup', bg: 'bg-green-100', shadow: 'hover:shadow-green-200', text: 'text-green-600' },
     { emoji: '💊', label: 'Medicine', bg: 'bg-orange-100', shadow: 'hover:shadow-orange-200', text: 'text-orange-600' },
-    { emoji: '🌿', label: 'Ayurvedik', bg: 'bg-emerald-100', shadow: 'hover:shadow-emerald-200', text: 'text-emerald-600' },
-    { emoji: '🏠', label: 'Oracle care', bg: 'bg-purple-100', shadow: 'hover:shadow-purple-200', text: 'text-purple-600' },
+    { emoji: '🌿', label: 'Ayurvedic Care', bg: 'bg-emerald-100', shadow: 'hover:shadow-emerald-200', text: 'text-emerald-600' },
+    { emoji: '🏠', label: 'Oracle Care', bg: 'bg-purple-100', shadow: 'hover:shadow-purple-200', text: 'text-purple-600' },
   ]
 
   return (
@@ -34,8 +35,9 @@ function Categories() {
 
       <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 pt-8 sm:pt-10 pb-12 sm:pb-20 gap-4 sm:gap-5'>
         {categories.map((cat, index) => (
-          <div
+          <Link to="/shop"  
             key={cat.label}
+            onClick={() => {Setdata(cat.label), window.scrollTo(0,0)}}
             style={{ animationDelay: `${index * 70}ms` }}
             className={`animate-pop-in opacity-0 bg-white items-center px-4 sm:px-6 lg:px-10 w-full flex flex-col gap-2 sm:gap-3 group duration-300 hover:-translate-y-1.5 hover:shadow-sm ${cat.shadow} transition-all p-4 sm:p-6 rounded-xl cursor-pointer`}
           >
@@ -43,7 +45,7 @@ function Categories() {
               {cat.emoji}
             </div>
             <p className={`${cat.text} font-semibold text-xs sm:text-sm lg:text-base text-center`}>{cat.label}</p>
-          </div>
+          </Link>
         ))}
       </div>
 

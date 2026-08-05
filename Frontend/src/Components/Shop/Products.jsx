@@ -5,7 +5,18 @@ import { FiShoppingCart } from "react-icons/fi";
 import { motion } from "framer-motion"
 
 function Products() {
-  const { AddCartProduct, newdata, SetOpenlogin, islogin } = useContext(Usercontext)
+  const { AddCartProduct, newdata, loading, SetOpenlogin, islogin } = useContext(Usercontext)
+
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[60vh]">
+        <div className="w-12 h-12 border-4 border-[#61AE38] border-t-transparent rounded-full animate-spin"></div>
+        <p className="mt-4 text-gray-500 font-medium">
+          Please wait, products are loading...
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className='grid gap-5 sm:gap-6 lg:gap-10 grid-cols-2 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-4 pb-10'>
@@ -13,14 +24,14 @@ function Products() {
         return (
           <motion.div
             key={item._id}
-            initial={{y:100,opacity:0}} whileInView={{y:0,opacity:1}} transition={{duration:0.5}} 
-            
+            initial={{ y: 100, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 0.5 }}
+
             style={{ animationDelay: `${index * 50}ms` }}
             className='animate-pop-in opacity-0 bg-white shadow-sm rounded-lg cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1'
           >
-            
-    
-            <Link to={`/detail/${item._id}`} >
+
+
+            <Link to={`/detail/${item._id}`} onClick={() => window.scrollTo(0, 0)} >
               <div className="m-auto h-30 bg-gray-50 mt-2 rounded-md overflow-hidden flex items-center justify-center">
                 <img
                   src={item.image}
@@ -40,7 +51,7 @@ function Products() {
                 {islogin === "loggedin" ?
                   (<Link
                     to="/cart"
-                    onClick={() => {  AddCartProduct(item._id), window.screenTop(0, 0) }}
+                    onClick={() => { AddCartProduct(item._id), window.screenTop(0, 0) }}
                     className='text-[17px] sm:text-[20px] bg-[#e5f3e1] rounded-sm p-2 transition-all duration-200 hover:bg-[#61AE38] hover:text-white active:scale-90'>
                     <FiShoppingCart />
                   </Link>) :

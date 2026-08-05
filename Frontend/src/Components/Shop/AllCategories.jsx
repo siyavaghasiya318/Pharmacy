@@ -13,6 +13,7 @@ import { Usercontext } from '../../Context/Usercontext';
 
 
 function AllCategories() {
+    const{Setdata} = useContext(Usercontext)
 
     const category = [
         { name: "All", icon: <BsGrid /> },
@@ -24,7 +25,6 @@ function AllCategories() {
         { name: "Oracle Care", icon: <FaSeedling /> },
         { name: "First Aid", icon: <FaKitMedical /> },
     ];
-    const{Setdata} = useContext(Usercontext)
 
     return (
         <div className="rounded-lg bg-[#f5f9f4] p-5">
@@ -36,7 +36,7 @@ function AllCategories() {
                 {category.map((item) => (
                     <li
                         key={item.name}
-                        onClick={() => Setdata(item.name)}
+                        onClick={() => {Setdata(item.name)}}
                         className="flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer text-gray-600 hover:bg-white hover:text-[#427C23] transition-all duration-200"
                     >
                         <span className="text-gray-400 text-[16px]">

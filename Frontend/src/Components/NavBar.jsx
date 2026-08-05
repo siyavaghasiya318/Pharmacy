@@ -29,7 +29,7 @@ function NavBar() {
                 <div className='hidden lg:flex gap-8 font-semibold text-[17px]'>
                     <NavLink to='/' className={navLinkClass}>Home</NavLink>
                     <NavLink to='/shop' className={navLinkClass}>Shop</NavLink>
-                    <p className='relative pb-1 cursor-pointer transition-colors duration-200 hover:text-[#427C23] after:content-[\] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:bg-[#427C23] after:w-0 hover:after:w-full after:transition-all after:duration-300'>Contact</p>
+                    <NavLink to='/contact' className='relative pb-1 cursor-pointer transition-colors duration-200 hover:text-[#427C23] after:content-[\] after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:bg-[#427C23] after:w-0 hover:after:w-full after:transition-all after:duration-300'>Contact</NavLink>
                 </div>
 
                 <div className='flex gap-4 sm:gap-6 lg:gap-8 items-center'>
@@ -72,7 +72,7 @@ function NavBar() {
                 <div className='flex flex-col gap-4 font-semibold text-[16px] px-6 pb-5 border-t border-gray-100 pt-4'>
                     <NavLink to='/' onClick={() => setMobileMenuOpen(false)} className='transition-colors duration-200 hover:text-[#427C23]'>Home</NavLink>
                     <NavLink to='/shop' onClick={() => setMobileMenuOpen(false)} className='transition-colors duration-200 hover:text-[#427C23]'>Shop</NavLink>
-                    <p className='cursor-pointer transition-colors duration-200 hover:text-[#427C23]'>Contact</p>
+                    <NavLink to='/contact' className='cursor-pointer transition-colors duration-200 hover:text-[#427C23]'>Contact</NavLink>
 
                     <div className='sm:hidden mt-2'>
                         {islogin === "loggedin" ? (
